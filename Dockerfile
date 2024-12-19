@@ -1,13 +1,13 @@
 FROM maven:3-openjdk-17-alpine as builder
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/main
 
-COPY . /usr/src/app
+COPY . /usr/src/main
 RUN mvn package
 
 FROM openjdk:17-jre-alpine
 
-COPY --from=builder /usr/src/app/target/*.war /app.war
+COPY --from=builder /target/*.war /app.war
 
 EXPOSE 8080
 
