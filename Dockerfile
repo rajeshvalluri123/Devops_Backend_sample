@@ -1,4 +1,4 @@
-FROM maven:3-openjdk-17-alpine as builder  # Corrected image tag
+FROM maven:3-openjdk-17-alpine as builder
 
 WORKDIR /usr/src/app
 
@@ -9,7 +9,7 @@ FROM openjdk:17-jre-alpine
 
 COPY --from=builder /usr/src/app/target/*.war /app.war
 
-EXPOSE 8082
+EXPOSE 8080
 
 ENTRYPOINT ["java"]
 CMD ["-war", "/app.war"]
