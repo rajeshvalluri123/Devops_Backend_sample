@@ -1,11 +1,10 @@
-FROM maven:3-openjdk-17-alpine as builder
-
+FROM openjdk:17 as builder  
 WORKDIR /usr/src/main
 
 COPY . /usr/src/main
 RUN mvn package
 
-FROM openjdk:17-jre-alpine
+FROM openjdk:17
 
 COPY --from=builder /target/*.war /app.war
 
